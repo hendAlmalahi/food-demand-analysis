@@ -1,0 +1,24 @@
+{
+  "holdout_weeks": [
+    136,
+    145
+  ],
+  "model": "LinearRegression on order counts with center, meal, week, price, promotion, and lagged demand features; negative outputs clipped to zero",
+  "evaluation": "rolling one-week-ahead forecasts over the final 10 training weeks; MAE scored only where the same center-meal pair had an observed prior-week record; both methods compared on identical rows",
+  "scored_holdout_rows": 31245,
+  "holdout_rows": 32821,
+  "exact_prior_week_coverage_pct": 95.19819627677401,
+  "linear_regression_mae": 93.31225920911534,
+  "previous_week_baseline_mae": 81.78281325012001,
+  "mae_improvement_pct": -14.097639223701327,
+  "forecast_test_weeks": [
+    146,
+    155
+  ],
+  "forecast_test_rows": 32573,
+  "test_forecast_total": 7924254.6502106525,
+  "test_baseline_total": 6747755.0,
+  "test_exact_lag_rows": 30924,
+  "test_stale_pair_fallback_rows": 1646,
+  "test_meal_median_fallback_rows": 3
+}

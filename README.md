@@ -74,12 +74,13 @@
 ### المتطلبات
 
 - Python 3.10 أو أحدث.
-- Jupyter وملفات المشروع ومكتبات التحليل: `pandas` و`numpy` و`matplotlib`.
+- Jupyter وملفات المشروع ومكتبات التحليل المحددة في `requirements.txt`.
 
 ثبّت المتطلبات عند الحاجة:
 
 ```powershell
-python -m pip install pandas numpy matplotlib jupyter
+python -m pip install -r requirements.txt
+python -m pip install jupyter
 ```
 
 ### تشغيل دفتر التحليل
@@ -92,6 +93,16 @@ python -m jupyter lab
 
 افتح [دفتر التحليل](notebooks/analysis.ipynb) وشغّل الخلايا بالترتيب. يعتمد الدفتر على وجود ملفات CSV في `data/row/`، ولا ينبغي تعديل ملفات المصدر أثناء التحليل.
 
+### إعادة تشغيل التنبؤ
+
+من مجلد المشروع، نفّذ:
+
+```powershell
+python scripts/forecast_demand.py
+```
+
+يقيم السكربت انحدارًا خطيًا على الأسابيع العشرة الأخيرة من التدريب مقارنة بخط أساس الأسبوع السابق، ثم يستخدم `test.csv` لإنتاج توقعات الأسابيع 146–155. يحفظ التوقعات والرسوم وملخص المقاييس في `reports/client_report/`. راجع [تقرير التنبؤ واستخدامه في الشراء](reports/client_report/forecast_report.md) لتفسير MAE والقيود وطريقة تحويل الطلب إلى احتياج مواد.
+
 ### عرض التقرير والرسوم
 
 افتح [تقرير العميل](reports/client_report/client_report.md). الرسوم المتاحة للمشروع موجودة في [`reports/figures/`](reports/figures/):
@@ -101,6 +112,8 @@ python -m jupyter lab
 - [الطلب حسب المطبخ](reports/figures/3_cuisines.png)
 - [مقارنة الطلب حسب الترويج](reports/figures/4_promo_boxplot.png)
 - [فرق السعر والطلب](reports/figures/5_discount_scatter.png)
+- [التحقق الزمني للتنبؤ](reports/client_report/forecast_validation.png)
+- [التوقع للأسابيع 146–155](reports/client_report/forecast_test_weeks.png)
 
 ## هيكل المشروع
 
@@ -110,9 +123,11 @@ python -m jupyter lab
 │   └── row/                  # ملفات البيانات المصدرية
 ├── docs/                     # قرارات التنظيف والتوثيق
 ├── notebooks/                # دفاتر التحليل
+├── scripts/                  # سكربتات التحليل والتنبؤ القابلة لإعادة التشغيل
 ├── reports/
 │   ├── client_report/        # تقرير العميل
 │   └── figures/              # الرسوم التحليلية
+├── requirements.txt          # متطلبات Python
 └── README.md
 ```
 
